@@ -3,17 +3,19 @@ import { Text, View, SafeAreaView, StyleSheet, Button, TouchableOpacity, Touchab
 import { AppContext } from '../context/app_context'
 
 export default function ModeScreen () {
+    
+    const { test, mode, setMode } = useContext(AppContext)
+    
 
     const handlePress = (mode) => {
         console.log(`mode is ${mode}`)
+        setMode(mode)
     }
 
-    const { test } = useContext(AppContext)
 
     return (
       <SafeAreaView>
         <Text style={styles.title}> CHOOSE YOUR MODE</Text>
-        <Text>{test}</Text>
 
         <View style={styles.modeContainer}>
             <TouchableOpacity 
