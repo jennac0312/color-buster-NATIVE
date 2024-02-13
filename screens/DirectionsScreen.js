@@ -1,5 +1,6 @@
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, Linking } from 'react-native'
 import ExampleDirection from '../components/ExampleDirection'
+import { Link } from '@react-navigation/native'
 
 const colors = [
     'cyan',
@@ -14,7 +15,7 @@ const colors = [
 
 const colorful = 'colorful'
 
-export default function DirectionsScreen () {
+export default function DirectionsScreen ({ navigation }) {
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}> DIRECTIONS </Text>
@@ -38,11 +39,17 @@ export default function DirectionsScreen () {
         <View style={styles.buttonContainer}>
             <TouchableOpacity
                 style={styles.button}
+                onPress={() => {
+                    navigation.navigate('Mode')
+                }}
             >
                 <Text>PLAY</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
+                onPress={() => {
+                    Linking.openURL('https://www.simplypsychology.org/stroop-effect.html#What-Is-The-Stroop-Effect')
+                }}
             >
                 <Text>READ THE SCIENCE</Text>
             </TouchableOpacity>
