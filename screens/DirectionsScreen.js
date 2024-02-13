@@ -25,7 +25,6 @@ export default function DirectionsScreen ({ navigation }) {
             <View style={{flexDirection: 'row'}}>
             {
                 colorful.split('').map((letter, index) => {
-                    console.log(index)
                     return <Text key={index} style={[styles.colorful, {color: colors[index]}]}>{letter}</Text>
                 })
             }
