@@ -23,6 +23,9 @@ export default function App() {
         <Stack.Screen 
             name="Directions"
             component={DirectionsScreen}
+            options={{
+              headerShown: false
+            }}
         />
         <Stack.Screen 
             name="Mode"
