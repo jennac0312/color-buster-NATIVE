@@ -1,5 +1,5 @@
 import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
-import EasyDirection from '../components/EasyDirection'
+import ExampleDirection from '../components/ExampleDirection'
 
 const colors = [
     'cyan',
@@ -33,7 +33,7 @@ export default function DirectionsScreen () {
             <Text>brain teaser</Text>
         </View>
 
-        <EasyDirection />
+        <ExampleDirection />
 
         <View style={styles.buttonContainer}>
             <TouchableOpacity

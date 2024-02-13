@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function EasyDirection () {
+export default function ExampleDirection () {
 
     const [mode, setMode] = useState('easy')
 
