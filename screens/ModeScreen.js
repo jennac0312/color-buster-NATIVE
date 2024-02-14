@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Text, View, SafeAreaView, StyleSheet, Button, TouchableOpacity, Touchable, TouchableWithoutFeedback } from 'react-native'
 import { AppContext } from '../context/app_context'
 
-export default function ModeScreen () {
+export default function ModeScreen ({ navigation }) {
     
     const { test, mode, setMode } = useContext(AppContext)
     
@@ -10,6 +10,9 @@ export default function ModeScreen () {
     const handlePress = (mode) => {
         console.log(`mode is ${mode}`)
         setMode(mode)
+
+        // navigate to game screen
+        navigation.navigate('Game')
     }
 
 
