@@ -16,7 +16,7 @@ export default AppContextProvider = ({ children }) => {
         name: '',
         style: ''
     }) //colors, name, style
-    const [ allQuestions, setAllQuestions ] = useState([]) // need to unshift first question
+    const [ allQuestions, setAllQuestions ] = useState([]) // need to shift first question
 
     // random inclusive
     function getRandomIntInclusive(min, max) {
@@ -69,32 +69,47 @@ export default AppContextProvider = ({ children }) => {
             style: list[getRandomIntInclusive(0,list.length -1)]
         }
         setQuestion(newQuestion)
-        console.log('QUESTION SET', question)
+        // console.log('QUESTION SET', question)
 
-        // push to all questions
-        setAllQuestions(previous => [...previous, newQuestion])
+        // // push to all questions
+        // setAllQuestions(previous => [...previous, newQuestion])
+        
         console.log('ALL QUESTIONS:', allQuestions)
         console.log('ALL QUESTIONS LENGTH:', allQuestions.length)
+
+        // synchronized state update
+        // setQuestion(newQuestion, () => {
+        //     setAllQuestions(prevQuestions => [...prevQuestions, newQuestion]);
+        // })
     }
+
+    // only updates allQs when question is updated... prevents allQs > GAME_LENGTH
+    useEffect(() => {
+        if(question.colors.length === 4){
+            setAllQuestions(previous => [...previous, question])
+            console.log('USE EFFECT ALL QS:', allQuestions)
+        }
+    }, [question])
 
     //  wont work bc getcolors is async (calls other functions)
     // while(allQuestions.length < 5){
     //     getColors() 
     // }
 
-    useEffect(() => {
-        if(allQuestions.length <= GAME_LENGTH){
-            getColors()
-        } else {
-            console.log('ALL QUESTIONS:', allQuestions)
-        }
-    }, [allQuestions])
+    // useEffect(() => {
+    //     if(allQuestions.length <= GAME_LENGTH){
+    //         getColors()
+    //     } else {
+    //         console.log('ALL QUESTIONS:', allQuestions)
+    //     }
+    // }, [allQuestions])
 
     return(
         <AppContext.Provider
             value={{
                 test,
                 mode, setMode,
+                allQuestions, GAME_LENGTH, getColors
 
             }}
         >
