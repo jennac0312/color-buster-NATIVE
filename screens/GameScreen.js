@@ -4,14 +4,12 @@ import { AppContext } from '../context/app_context'
 
 export default function GameScreen () {
 
-    const { mode, allQuestions, GAME_LENGTH, getColors } = useContext(AppContext)
-    
-    // remove first empty question
-    // allQuestions.shift()
-    console.log(allQuestions, allQuestions.length)
+    const { mode, allQuestions, GAME_LENGTH, ARCADE_ROUNDS, getColors } = useContext(AppContext)
 
     useEffect(() => {
-        if(allQuestions.length < 5){
+        // arcade mode
+        if(allQuestions.length < GAME_LENGTH){
+            console.log('LENGTH IS LESS THAN', GAME_LENGTH)
             getColors()
         } else {
             console.log('ALL QUESTIONS:', allQuestions)

@@ -30,10 +30,10 @@ export default AppContextProvider = ({ children }) => {
         let list = []
         for(let i = 0; i <= 3; i++){
             let random = getRandomIntInclusive(0, colors.length -1)
-            console.log('RANDOM', random)
+            // console.log('RANDOM', random)
             list.push(colors[random])
         }
-        console.log('ORIGINAL LIST', list)
+        // console.log('ORIGINAL LIST', list)
         checkUniqueColors(list)
     }
     // getColors()
@@ -47,15 +47,15 @@ export default AppContextProvider = ({ children }) => {
         // check length === 4
         // console.log('UNIQUE SET', uniqueSet)
         if( uniqueSet.size === list.length ){
-            console.log('PASS PASS PASS')
+            // console.log('PASS PASS PASS')
             configureQuestion(list)
         } else {
             // else run it back
             getColors()
-            console.log('FAIL FAIL FAIL')
+            // console.log('FAIL FAIL FAIL')
         }
         // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-        console.log('LENGTH:', allQuestions.length)
+        // console.log('LENGTH:', allQuestions.length)
     }
     
     function configureQuestion(list) {
@@ -74,8 +74,8 @@ export default AppContextProvider = ({ children }) => {
         // // push to all questions
         // setAllQuestions(previous => [...previous, newQuestion])
         
-        console.log('ALL QUESTIONS:', allQuestions)
-        console.log('ALL QUESTIONS LENGTH:', allQuestions.length)
+        // console.log('ALL QUESTIONS:', allQuestions)
+        // console.log('ALL QUESTIONS LENGTH:', allQuestions.length)
 
         // synchronized state update
         // setQuestion(newQuestion, () => {
@@ -109,7 +109,8 @@ export default AppContextProvider = ({ children }) => {
             value={{
                 test,
                 mode, setMode,
-                allQuestions, GAME_LENGTH, getColors
+                GAME_LENGTH, ARCADE_ROUNDS,
+                setAllQuestions, allQuestions, getColors
 
             }}
         >

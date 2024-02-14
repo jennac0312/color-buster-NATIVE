@@ -1,10 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Text, View, SafeAreaView, StyleSheet, Button, TouchableOpacity, Touchable, TouchableWithoutFeedback } from 'react-native'
 import { AppContext } from '../context/app_context'
 
 export default function ModeScreen ({ navigation }) {
     
-    const { test, mode, setMode } = useContext(AppContext)
+    const { test, mode, setMode, allQuestions, setAllQuestions } = useContext(AppContext)
     
 
     const handlePress = (mode) => {
@@ -14,6 +14,12 @@ export default function ModeScreen ({ navigation }) {
         // navigate to game screen
         navigation.navigate('Game')
     }
+
+    // reset questions on mount ... except stack screens dont remount ?? NEEDS WORK
+    useEffect(() => {
+        setAllQuestions([])
+        console.log('resetting qs:', allQuestions)
+    }, [])
 
 
     return (
