@@ -1,90 +1,95 @@
 import { useState } from 'react'
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity, Dimensions, NativeEventEmitter } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+const { width } = Dimensions.get('window') // global
 
 export default function ExampleDirection () {
 
     const [mode, setMode] = useState('easy')
 
+    const handleScrollEnd = ({ nativeEvent }) => {
+        const x = nativeEvent.contentOffset.x // x axis position
+        console.log(x)
+
+        x ? setMode('hard') : setMode('easy')
+    }
+
     return (
       <View style={styles.container}>
-        <Text style={styles.title}> HOW TO PLAY: </Text>
+        {/* <Text style={styles.title}> HOW TO PLAY: </Text> */}
 
         <View style={styles.mode}>
-            <Text>easy</Text>
+            <Text style={ mode === 'easy' && {'fontWeight': 'bold', 'fontStyle': 'italic'} }>easy</Text>
             <Text style={styles.line}>|</Text>
-            <Text>hard</Text>
+            <Text style={ mode === 'hard' && {'fontWeight': 'bold', 'fontStyle': 'italic'} }>hard</Text>
         </View>
         
         <ScrollView 
             style={styles.scroll} 
-            horizontal={true}
-            // bounces={false}
-            // contentInset={0}
-            // disableIntervalMomentum={true}
-            // snapToAlignment='center'
-            // snapToInterval={10}
-            // snapToAlignment={'center'}
-            // decelerationRate={'fast'}
-            // onScroll={() => console.log('scrolling')}
+            horizontal
+            pagingEnabled //snaps to each screen
+            contentContainerStyle={{ width: width * 2}}
+            onMomentumScrollEnd={handleScrollEnd}
         >
             <View style={styles.easy}>
                 <Text style={styles.exampleColor}>RED</Text>
                 <View style={styles.optionsContainer}>
                     <View style={[styles.option, {position: 'relative'}]}>
-                        <Text>yellow</Text>
+                        <Text style={{ 'fontFamily': 'Bungee' }}>yellow</Text>
                         <MaterialCommunityIcons name="gesture-tap" size={34} color="black" style={styles.tap}/>
                     </View>
                     <View style={styles.option}>
-                        <Text>orange</Text>
+                        <Text style={{ 'fontFamily': 'Bungee' }}>orange</Text>
                     </View>
                     <View style={styles.option}>
-                        <Text>green</Text>
+                        <Text style={{ 'fontFamily': 'Bungee' }}>green</Text>
                     </View>
                     <View style={styles.option}>
-                        <Text>red</Text>
+                        <Text style={{ 'fontFamily': 'Bungee' }}>red</Text>
                     </View>
                 </View>
 
                 {/* <> */}
                     <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
                         <Text style={styles.explanation}>Though the word spells </Text>
-                        <Text style={[styles.explanation ,{color: 'red'}]}>RED</Text>
-                        <Text style={styles.explanation}>, it's color is </Text>
-                        <Text style={[styles.explanation ,{color: 'yellow'}]}>yellow</Text>
+                        <Text style={[styles.explanation, {color: 'red', 'fontFamily': 'Bungee'}]}>RED</Text>
+                        <Text style={styles.explanation}>, it's colored in </Text>
+                        <Text style={[styles.explanation, {color: 'yellow', 'fontWeight': 'bold'}]}>yellow</Text>
                         <Text style={styles.explanation}>.</Text>
                     </View>
 
-                    <Text style={styles.explanation}>Therefore, the answer is yellow!</Text>
+                    <Text style={styles.explanation}>Therefore, the answer is <Text style={{ 'fontFamily': 'Bungee' }}>YELLOW</Text>!</Text>
                 {/* </> */}
             </View>
             <View style={styles.hard}>
                 <Text style={styles.exampleColor}>RED</Text>
                 <View style={styles.optionsContainer}>
                     <View style={[styles.option, { backgroundColor: 'yellow'}]}>
-                        <Text>yellow</Text>
+                        <Text> </Text>
                     </View>
                     <View style={[styles.option, {backgroundColor: 'orange'}]}>
-                        <Text>orange</Text>
+                        <Text> </Text>
                     </View>
                     <View style={[styles.option, {backgroundColor: 'green'}]}>
-                        <Text>green</Text>
+                        <Text> </Text>
                     </View>
                     <View style={[styles.option, {position: 'relative', backgroundColor: 'red'}]}>
-                        <Text>red</Text>
+                        <Text> </Text>
                         <MaterialCommunityIcons name="gesture-tap" size={34} color="black" style={styles.tap}/>
                     </View>
                 </View>
 
                 {/* <> */}
                     <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
-                        <Text style={[styles.explanation ,{color: 'red'}]}>RED</Text>
+                        <Text style={[styles.explanation, {color: 'red', 'fontFamily': 'Bungee'}]}>RED</Text>
                         <Text style={styles.explanation}> is colored in </Text>
-                        <Text style={[styles.explanation ,{color: 'yellow'}]}>yellow</Text>
-                        <Text style={styles.explanation}>, but don't be fooled.</Text>
+                        <Text style={[styles.explanation, {color: 'yellow', 'fontWeight': 'bold'}]}>yellow</Text>
+                        <Text style={styles.explanation}>, but don't be fooled!</Text>
+                    </View>
+                    <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
                         <Text style={styles.explanation}>The answer is </Text>
-                        <Text style={[styles.explanation ,{color: 'red'}]}>red</Text>
-                        <Text>!</Text>
+                        <View style={[styles.explanation, {color: 'red', 'borderColor': 'red', 'borderWidth': 2, 'backgroundColor': 'red', 'borderRadius': 5, 'aspectRatio' : 1 }]}><Text style={{ 'color': 'red' }}>red</Text></View>
                     </View>
                 {/* </> */}
             </View>
@@ -96,16 +101,18 @@ export default function ExampleDirection () {
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 2,
+        // borderWidth: 2,
         borderColor: 'red',
-        margin: 100,
+        marginTop: 50,
         // position: 'absolute',
         // top: '50%',
         // bottom: '50%',
         // left: '50%',
         // right: '50%',
         width: '100%',
+        flex: 1,
         alignItems: 'center',
+        // justifyContent: 'center'
     },
     title: {
         fontSize: 30,
@@ -124,44 +131,59 @@ const styles = StyleSheet.create({
         marginRight: 5,
     },
     scroll: {
-        width: '100%',
+        // width: '100%',
         borderWidth: 2,
-        borderColor: 'lime',
+        borderColor: 'orange',
         backgroundColor: 'lime',
         flexDirection: 'column',
-        height: '50%',
+        // height: 'fit content',
     },
     easy: {
-        width: '100%',
+        width: width,
         // height: '100%',
-        // height: 'inherit',
+        flex: 1,
+        height: 'inherit',
         borderWidth: 2,
         borderColor: 'pink',
         backgroundColor: 'grey',
         alignItems: 'center',
     },
+    hard: {
+        width: width,
+        // borderWidth: 4,
+        // justifySelf: 'flex-end',
+        // width: '100%',
+        // height: '100%',
+        // height: 'inherit',
+        // borderWidth: 2,
+        borderColor: 'pink',
+        backgroundColor: 'lightgrey',
+        alignItems: 'center',
+    },
     exampleColor: {
         fontWeight: 'bold',
-        fontSize: 24,
-        color: 'yellow'
+        fontSize: 60,
+        color: 'yellow',
+        fontFamily: 'Bungee'
     },
     optionsContainer: {
         borderWidth: 2,
-        width: '100%',
-        // height: '100%',
-        height: 210,
+        width: width,
+        height: '100%',
+        // height: 210,
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
-        alignItems: 'space-evenly',
+        alignItems: 'center',
     },
     option: {
         // flexGrow: 1,
-        flexBasis: '40%',
+        // flexBasis: '40%',
         // height: '40%',
-        height: 80,
-        // width: '40%',
+        // height: 50,
+        width: '40%',
+        aspectRatio: 1, // squares
         backgroundColor: 'white',
         borderRadius: 10,
         alignItems: 'center',
@@ -170,18 +192,8 @@ const styles = StyleSheet.create({
     },
     explanation: {
         fontSize: 20,
-    },
-    hard: {
-        width: '100%',
-        borderWidth: 4,
-        justifySelf: 'flex-end',
-        width: '100%',
-        // height: '100%',
-        // height: 'inherit',
-        borderWidth: 2,
-        borderColor: 'pink',
-        backgroundColor: 'lightgrey',
-        alignItems: 'center',
+        // borderWidth: 2,
+        // borderColor: 'red'
     },
     tap: {
         position: "absolute",
