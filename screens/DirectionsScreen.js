@@ -21,7 +21,7 @@ export default function DirectionsScreen ({ navigation }) {
         <Text style={styles.title}> DIRECTIONS </Text>
 
         <View style={styles.subtitle}>
-            <Text>a</Text>
+            <Text style={{ 'fontFamily': 'Caveat', 'fontSize': 20, 'marginBottom': -15}}>a</Text>
             <View style={{flexDirection: 'row'}}>
             {
                 colorful.split('').map((letter, index) => {
@@ -30,7 +30,7 @@ export default function DirectionsScreen ({ navigation }) {
             }
             </View>
             {/* <Text style={styles.colorful}>colorful</Text> */}
-            <Text>brain teaser</Text>
+            <Text style={{ 'fontFamily': 'Caveat', 'fontSize': 20, 'marginTop': -5}}>brain teaser</Text>
         </View>
 
         <ExampleDirection />
@@ -65,19 +65,23 @@ const styles = StyleSheet.create({
         // backgroundColor: 'orange',
         height: '100%',
         alignItems: 'center',
+        backgroundColor: 'rgba(100, 131, 129, .5)',
     },
     title: {},
     subtitle: {
         borderWidth: 2,
         alignItems: 'center',
         // flexDirection: 'row',
-        width: '100%',
+        // width: '100%',
     },
     colorful: {
         fontStyle: 'italic',
-        fontSize: 80,
+        fontSize: 70,
+        flexBasis: 1,
+        flexGrow: 1,
         flexDirection: 'row',
         // borderWidth: 2,
+        fontFamily: 'Sixtyfour Convergence',
     },
     buttonContainer : {
         borderWidth: 2,
@@ -92,6 +96,7 @@ const styles = StyleSheet.create({
         width: '25%',
         alignItems: 'center',
         borderRadius: 10,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        backgroundColor: 'rgba(139, 149, 86, 1)'
     },
 })
