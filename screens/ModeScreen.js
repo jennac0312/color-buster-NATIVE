@@ -60,7 +60,7 @@ export default function ModeScreen ({ navigation }) {
                         <View style={ (mode.mode == 'easy' || mode.mode == 'hard') ? styles.wordContainer.top : styles.wordContainer.bottom }>
                             <Text style={styles.button}>{mode.mode.toUpperCase()}</Text>
                             <Text style={ styles.defaultFont }>{mode.desc1}</Text>
-                            <Text style={[ styles.defaultFont, ( mode.mode == 'arcade' && { color: 'red', 'fontStyle': 'italic', 'fontWeight': 'bold' }) ]}>{mode.desc2}</Text>
+                            <Text style={[ styles.defaultFont, ( mode.mode == 'arcade' && { color: 'crimson', 'fontStyle': 'italic', 'fontWeight': 'bold' }) ]}>{mode.desc2}</Text>
                         </View>
                     </TouchableOpacity>
                     )
@@ -85,7 +85,7 @@ export default function ModeScreen ({ navigation }) {
 const styles = StyleSheet.create({
     fullScreen: {
         flex: 1,
-        backgroundColor: 'rgba(100, 131, 129, .5)',
+        backgroundColor: 'rgba(156, 82, 139, .5)',
     },
     title: {
         textAlign: 'center',
@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
     button: {
         fontSize: 35,
         fontFamily: 'Sixtyfour Convergence',
-        color: 'rgba(86, 86, 118, 1)',
+        // color: 'rgba(86, 86, 118, 1)',
+        color: 'rgba(97, 15, 127, 1)'
     },
     wordContainer: {
         top: {

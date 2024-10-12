@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         // backgroundColor: 'orange',
         height: '100%',
         alignItems: 'center',
-        backgroundColor: 'rgba(100, 131, 129, .5)',
+        backgroundColor: 'rgba(156, 82, 139, .5)',
     },
     title: {
         alignItems: 'center',

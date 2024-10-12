@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation }) {
     const buster = 'BUSTER'
 
     return (
-        <SafeAreaView style={{ backgroundColor: 'rgba(100, 131, 129, .5)' }}>
+        <SafeAreaView style={{ backgroundColor: 'rgba(156, 82, 139, .5)' }}>
             <View style={styles.container}>
                 <View style={styles.top}>
                     <Text style={[styles.red, styles.font]}>C</Text>
@@ -122,10 +122,11 @@ const styles = StyleSheet.create({
         transform: [{ scaleY: 2}],
     },
     subtitle : {
-        fontStyle: "italic",
+        // fontStyle: "italic",
         marginBottom: 50,
         fontFamily: 'Caveat',
         // marginTop: 25,
+        color: 'rgba(97, 15, 127, .8)'
     },
     buttonContainer : {
         // borderWidth: 2,

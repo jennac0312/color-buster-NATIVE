@@ -20,7 +20,7 @@ export default function GameOverScreen({ navigation }) {
     return (
       <SafeAreaView style={styles.fullScreen}>
       
-        <Text style={{ 'textAlign': 'center', fontFamily : 'caveat', fontSize: 20, color: 'rgba(0, 0, 0, .7)'}}> {mode} </Text>
+        <Text style={{ 'textAlign': 'center', fontFamily : 'caveat', fontSize: 20, color: 'rgba(97, 15, 127, .5)'}}> {mode} </Text>
 
         <View style={ styles.container }>
           <Text style={styles.title}>GAME OVER</Text>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   fullScreen: {
     // borderWidth: 2,
     flex: 1,
-    backgroundColor: 'rgba(100, 131, 129, .5)',
+    backgroundColor: 'rgba(156, 82, 139, .5)',
   },
   container: {
     // borderWidth: 2,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   score: {
     fontFamily: 'Bungee',
     fontSize: '200%',
-    color: 'rgba(227, 193, 111, 1)'
+    color: 'rgba(47, 1, 71, 1)'
   },
   buttonContainer: {
     // borderWidth: 2,

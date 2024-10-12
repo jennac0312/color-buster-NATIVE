@@ -8,7 +8,7 @@ export default function GameScreen ({ navigation }) {
 
     const [ round, setRound ] = useState(0) //will need reset
     const [ currentQuestion, setCurrentQuestion ] = useState(null)
-    const [ feedbackColor, setFeedbackColor ] = useState('rgba(100, 131, 129, .5)')
+    const [ feedbackColor, setFeedbackColor ] = useState('rgba(156, 82, 139, .5)')
 
     const endGame = () => {
         navigation.navigate('GameOver')
@@ -20,7 +20,7 @@ export default function GameScreen ({ navigation }) {
             setRound(cur => cur + 1)
             console.log('enter round:', round+2)
         } else {
-            setFeedbackColor('rgba(100, 131, 129, .5)')
+            setFeedbackColor('rgba(156, 82, 139, .5)')
             endGame()
         }
     }
@@ -37,7 +37,7 @@ export default function GameScreen ({ navigation }) {
         }
 
         setTimeout(() => {
-            setFeedbackColor('rgba(100, 131, 129, .5)')
+            setFeedbackColor('rgba(156, 82, 139, .5)')
             startNextRound()
         }, 200) // set feedback color back to transparent after ms
 
