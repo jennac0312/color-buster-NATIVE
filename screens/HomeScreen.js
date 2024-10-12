@@ -1,31 +1,36 @@
 import { StyleSheet, Text, TouchableOpacity, View, SafeAreaView } from 'react-native'
-
-const colors = [
-    // 'red',
-    // 'orange',
-    // 'yellow',
-    // 'blue',
-    // 'green',
-    'purple',
-    'cyan',
-    'salmon',
-    'lime',
-    'gold',
-    'magenta',
-]
-
-const buster = 'BUSTER'
+import { useContext } from 'react'
+import { AppContext } from '../context/app_context'
 
 export default function HomeScreen({ navigation }) {
+
+    const { fontLoaded } = useContext(AppContext)
+
+    const colors = [
+        // 'red',
+        // 'orange',
+        // 'yellow',
+        // 'blue',
+        // 'green',
+        'purple',
+        'cyan',
+        'salmon',
+        'lime',
+        'gold',
+        'magenta',
+    ]
+    
+    const buster = 'BUSTER'
+
     return (
         <SafeAreaView>
             <View style={styles.container}>
                 <View style={styles.top}>
-                    <Text style={styles.red}>C</Text>
-                    <Text style={styles.orange}>O</Text>
-                    <Text style={styles.yellow}>L</Text>
-                    <Text style={styles.blue}>O</Text>
-                    <Text style={styles.green}>R</Text>
+                    <Text style={[styles.red, styles.font]}>C</Text>
+                    <Text style={[styles.orange, styles.font]}>O</Text>
+                    <Text style={[styles.yellow, styles.font]}>L</Text>
+                    <Text style={[styles.blue, styles.font]}>O</Text>
+                    <Text style={[styles.green, styles.font]}>R</Text>
                 </View>
 
                 <View style={styles.bottom}>
@@ -77,37 +82,43 @@ const styles = StyleSheet.create({
         // borderWidth: 2,
         borderWidth: 2,
         // height: '100%'
+        marginTop: -90,
+    },
+    font: {
+        fontSize: '90%',
+        fontFamily: 'Sixtyfour Convergence',
+        // fontFamily: 'Londrina Sketch'
     },
     red: {
         color: 'red',
-        fontSize: 100
     },  
     orange: {
         color: 'orange',
-        fontSize: 100
     },  
     yellow: {
         color: 'yellow',
-        fontSize: 100
     },  
     blue: {
         color: 'blue',
-        fontSize: 100
     },  
     green: {
         color: 'green',
-        fontSize: 100
     },  
     bottom: {
         flexDirection: 'row',
     },
     text: {
         fontSize: 100,
-        // borderWidth: 5
+        fontSize: '90%',
+        // borderWidth: 5,
+        fontFamily: 'Sixtyfour Convergence',
+        flex: 1,
+        textAlign: 'center'
     },
     subtitle : {
         fontStyle: "italic",
-        marginBottom: 40,
+        marginBottom: 50,
+        fontFamily: 'Caveat',
     },
     buttonContainer : {
         borderWidth: 2,

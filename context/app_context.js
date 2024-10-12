@@ -1,9 +1,32 @@
+import { ActivityIndicator, View } from "react-native";
 import { createContext, useEffect, useState } from "react";
+import * as Font from 'expo-font'
 
 export const AppContext = createContext()
 
 export default AppContextProvider = ({ children }) => {
 
+    // FONTS
+    const [fontLoaded, setFontLoaded] = useState(false)
+
+    
+    useEffect(() => {
+        const fetchFonts = async() => {
+            try {
+                await Font.loadAsync({
+                    'Sixtyfour-Convergence': require('../assets/fonts/SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf'),
+                    'Caveat': require('../assets/fonts/Caveat-VariableFont_wght.ttf'),
+                    'Londrina Sketch': require('../assets/fonts/LondrinaSketch-Regular.ttf'),
+                })
+                setFontLoaded(true)
+            } catch (error) {
+                console.warn('Error loading fonts ', error)
+            }
+        }
+        fetchFonts()
+    }, [])
+
+    // GAME LOGIC
     const test = 'test'
     const GAME_LENGTH = 5
     const ARCADE_ROUNDS = 100
@@ -107,6 +130,8 @@ export default AppContextProvider = ({ children }) => {
     return(
         <AppContext.Provider
             value={{
+                fontLoaded,
+
                 test,
                 mode, setMode,
                 GAME_LENGTH, ARCADE_ROUNDS,
@@ -114,7 +139,13 @@ export default AppContextProvider = ({ children }) => {
 
             }}
         >
-            { children }
+            { !fontLoaded ? (
+                    <View style={{ 'flex': 1, 'justifyContent': 'center', 'alignItems': 'center' }}>
+                        <ActivityIndicator size='large' color='black'/>
+                    </View>
+                ) : (
+                    children
+                )}
         </AppContext.Provider>
     )
 }

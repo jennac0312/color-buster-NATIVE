@@ -4,7 +4,7 @@ export default function GameOverScreen({ navigation }) {
 
   const handleResetGame = () => {
     navigation.reset({
-      index: 0,
+      index: 3,
       routes: [{name: 'Home'}]
     })
   }
