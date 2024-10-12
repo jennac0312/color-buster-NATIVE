@@ -18,7 +18,7 @@ const colorful = 'colorful'
 export default function DirectionsScreen ({ navigation }) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.title}> DIRECTIONS </Text>
+        {/* <Text style={styles.title}> DIRECTIONS </Text> */}
 
         <View style={styles.subtitle}>
             <Text style={{ 'fontFamily': 'Caveat', 'fontSize': 20, 'marginBottom': -15}}>a</Text>
