@@ -66,7 +66,16 @@ export default function ModeScreen ({ navigation }) {
                     )
                 })
             }
-
+            <View style={styles.directionButtonContainer}>
+                <TouchableOpacity 
+                    style={styles.directionButton}
+                    onPress={() => {
+                        navigation.navigate('Directions')
+                    }}
+                >
+                    <Text style={{ 'fontFamily': 'Caveat', 'fontSize': 20}}>DIRECTIONS</Text>
+                </TouchableOpacity>
+            </View>
         </View>
 
       </SafeAreaView>
@@ -76,7 +85,7 @@ export default function ModeScreen ({ navigation }) {
 const styles = StyleSheet.create({
     fullScreen: {
         flex: 1,
-        backgroundColor: 'rgba(100, 131, 129, .5)',    
+        backgroundColor: 'rgba(100, 131, 129, .5)',
     },
     title: {
         textAlign: 'center',
@@ -91,27 +100,27 @@ const styles = StyleSheet.create({
         // borderWidth: 2,
         // borderColor: 'lime',
         flex: 1,
-        height: '100%',
+        // height: '100%',
         flexDirection: 'row',
         flexWrap: 'wrap',
+        alignContent: 'center'
     },
     mode: {
         // borderWidth: 1,
         // borderStyle: 'dotted',
         // borderColor: 'rgba(174, 173, 240, 1)',
-        flexBasis: '50%',
+        // flexBasis: '50%',
         width: '50%',
-        height: '50%',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        flex: 1,
+        height: '20%',
+        // justifyContent: 'flex-end',
+        // alignItems: 'center',
+        // flex: .5,
     },
     button: {
         fontSize: 35,
         fontFamily: 'Sixtyfour Convergence',
         color: 'rgba(86, 86, 118, 1)',
     },
-    what: {},
     wordContainer: {
         top: {
             flex: 1,
@@ -128,5 +137,21 @@ const styles = StyleSheet.create({
             alignItems: 'center',
             padding: 15,
         }
-    }
+    },
+    directionButtonContainer : {
+        // borderWidth: 2,
+        flexDirection: 'row',
+        position: 'absolute',
+        bottom: 10,
+        right: '10%',
+    },
+    directionButton : {
+        padding: 10,
+        justifyContent: 'center',
+        borderRadius: '50%',
+        aspectRatio: 1,
+        backgroundColor: 'rgba(174, 173, 240, 1)',
+        borderColor: 'rgba(86, 86, 118, 1)',
+        borderWidth: 1,
+    },
 })  
