@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation }) {
     const buster = 'BUSTER'
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{ backgroundColor: 'rgba(100, 131, 129, .5)' }}>
             <View style={styles.container}>
                 <View style={styles.top}>
                     <Text style={[styles.red, styles.font]}>C</Text>
@@ -52,7 +52,7 @@ export default function HomeScreen({ navigation }) {
                             navigation.navigate('Mode')
                         }}
                     >
-                        <Text>PLAY</Text>
+                        <Text style={{ 'fontFamily': 'Caveat', 'fontSize': 20}}>PLAY</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={styles.button}
@@ -60,7 +60,7 @@ export default function HomeScreen({ navigation }) {
                             navigation.navigate('Directions')
                         }}
                     >
-                        <Text>DIRECTIONS</Text>
+                        <Text style={{ 'fontFamily': 'Caveat', 'fontSize': 20}}>DIRECTIONS</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -70,24 +70,29 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     container : {
-        borderColor: 'red',
-        borderWidth: 3,
+        // borderColor: 'red',
+        // borderWidth: 3,
         height: '100%',
         // width: '100%',
         alignItems  : 'center',
         justifyContent: 'center',
+        // backgroundColor: 'inherit',
+        // backgroundColor: 'rgba(255, 191, 70, .5)',
     },
     top : {
         flexDirection: 'row',
+        // borderColor: 'yellow',
         // borderWidth: 2,
-        borderWidth: 2,
         // height: '100%'
-        marginTop: -90,
+        // marginTop: -90,
     },
     font: {
         fontSize: '90%',
         fontFamily: 'Sixtyfour Convergence',
-        // fontFamily: 'Londrina Sketch'
+        // fontFamily: 'Londrina Sketch',
+        transform: [{ scaleY: 2}],
+        marginBottom: 60,
+        marginTop: -50,
     },
     red: {
         color: 'red',
@@ -108,31 +113,38 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     text: {
-        fontSize: 100,
+        // fontSize: 100,
         fontSize: '90%',
         // borderWidth: 5,
         fontFamily: 'Sixtyfour Convergence',
         flex: 1,
-        textAlign: 'center'
+        textAlign: 'center',
+        transform: [{ scaleY: 2}],
     },
     subtitle : {
         fontStyle: "italic",
         marginBottom: 50,
         fontFamily: 'Caveat',
+        // marginTop: 25,
     },
     buttonContainer : {
-        borderWidth: 2,
+        // borderWidth: 2,
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-evenly'
     },
     button : {
         display: 'flex',
-        backgroundColor: 'tan',
+        // backgroundColor: 'tan',
         padding: 10,
-        width: '25%',
+        // width: '25%',
         alignItems: 'center',
-        borderRadius: 10,
-        fontWeight: 'bold'
+        justifyContent: 'center',
+        borderRadius: '50%',
+        aspectRatio: 1,
+        // fontWeight: 'bold',
+        backgroundColor: 'rgba(174, 173, 240, 1)',
+        borderColor: 'rgba(86, 86, 118, 1)',
+        borderWidth: 1,
     },
 })
