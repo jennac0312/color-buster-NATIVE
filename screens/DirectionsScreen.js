@@ -20,7 +20,7 @@ export default function DirectionsScreen ({ navigation }) {
       <SafeAreaView style={styles.container}>
         {/* <Text style={styles.title}> DIRECTIONS </Text> */}
 
-        <View style={styles.subtitle}>
+        <View style={styles.title}>
             <Text style={{ 'fontFamily': 'Caveat', 'fontSize': 20, 'marginBottom': -15}}>a</Text>
             <View style={{flexDirection: 'row'}}>
             {
@@ -42,15 +42,15 @@ export default function DirectionsScreen ({ navigation }) {
                     navigation.navigate('Mode')
                 }}
             >
-                <Text>PLAY</Text>
+                <Text style={{ 'fontFamily': 'Caveat', 'fontSize': 20 }}>PLAY</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => {
-                    Linking.openURL('https://www.simplypsychology.org/stroop-effect.html#What-Is-The-Stroop-Effect')
+                    Linking.openURL('https://www.simplypsychology.org/stroop-effect.html')
                 }}
             >
-                <Text>READ THE SCIENCE</Text>
+                <Text style={{ 'fontFamily': 'Caveat', 'fontSize': 20 }}>THE SCIENCE</Text>
             </TouchableOpacity>
         </View>
 
@@ -60,19 +60,15 @@ export default function DirectionsScreen ({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 2,
-        borderColor: 'red',
+        // borderWidth: 2,
+        // borderColor: 'red',
         // backgroundColor: 'orange',
         height: '100%',
         alignItems: 'center',
         backgroundColor: 'rgba(100, 131, 129, .5)',
     },
-    title: {},
-    subtitle: {
-        borderWidth: 2,
+    title: {
         alignItems: 'center',
-        // flexDirection: 'row',
-        // width: '100%',
     },
     colorful: {
         fontStyle: 'italic',
@@ -84,19 +80,27 @@ const styles = StyleSheet.create({
         fontFamily: 'Sixtyfour Convergence',
     },
     buttonContainer : {
-        borderWidth: 2,
+        // borderWidth: 2,
+        // marginTop: 20,
         flexDirection: 'row',
         width: '100%',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        position: 'absolute',
+        bottom: 100,
     },
     button : {
         display: 'flex',
         backgroundColor: 'tan',
         padding: 10,
-        width: '25%',
+        // width: '25%',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: '50%',
+        aspectRatio: 1,
         fontWeight: 'bold',
-        backgroundColor: 'rgba(139, 149, 86, 1)'
+        backgroundColor: 'rgba(174, 173, 240, 1)',
+        borderColor: 'rgba(86, 86, 118, 1)',
+        borderWidth: 1,
+        justifyContent: 'center',
+        textAlign: 'center'
     },
 })

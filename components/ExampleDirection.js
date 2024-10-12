@@ -20,9 +20,9 @@ export default function ExampleDirection () {
         {/* <Text style={styles.title}> HOW TO PLAY: </Text> */}
 
         <View style={styles.mode}>
-            <Text style={ mode === 'easy' && {'fontWeight': 'bold', 'fontStyle': 'italic'} }>easy</Text>
+            <Text style={ mode === 'easy' ? {'fontWeight': 'bold', 'fontStyle': 'italic', 'textDecorationLine': 'underline'} : {'textDecorationLine': 'line-through'} }>easy</Text>
             <Text style={styles.line}>|</Text>
-            <Text style={ mode === 'hard' && {'fontWeight': 'bold', 'fontStyle': 'italic'} }>hard</Text>
+            <Text style={ mode === 'hard' ? {'fontWeight': 'bold', 'fontStyle': 'italic', 'textDecorationLine': 'underline'} : {'textDecorationLine': 'line-through'} }>hard</Text>
         </View>
         
         <ScrollView 
@@ -31,6 +31,7 @@ export default function ExampleDirection () {
             pagingEnabled //snaps to each screen
             contentContainerStyle={{ width: width * 2}}
             onMomentumScrollEnd={handleScrollEnd}
+            showsHorizontalScrollIndicator={false}
         >
             <View style={styles.easy}>
                 <Text style={styles.exampleColor}>RED</Text>
@@ -51,7 +52,7 @@ export default function ExampleDirection () {
                 </View>
 
                 {/* <> */}
-                    <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
+                    <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', 'marginTop': -40}}>
                         <Text style={styles.explanation}>Though the word spells </Text>
                         <Text style={[styles.explanation, {color: 'red', 'fontFamily': 'Bungee'}]}>RED</Text>
                         <Text style={styles.explanation}>, it's colored in </Text>
@@ -81,7 +82,7 @@ export default function ExampleDirection () {
                 </View>
 
                 {/* <> */}
-                    <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
+                    <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', 'marginTop': -40}}>
                         <Text style={[styles.explanation, {color: 'red', 'fontFamily': 'Bungee'}]}>RED</Text>
                         <Text style={styles.explanation}> is colored in </Text>
                         <Text style={[styles.explanation, {color: 'yellow', 'fontWeight': 'bold'}]}>yellow</Text>
@@ -132,20 +133,20 @@ const styles = StyleSheet.create({
     },
     scroll: {
         // width: '100%',
-        borderWidth: 2,
-        borderColor: 'orange',
-        backgroundColor: 'lime',
+        // borderWidth: 2,
+        // borderColor: 'orange',
+        // backgroundColor: 'lime',
         flexDirection: 'column',
         // height: 'fit content',
     },
     easy: {
         width: width,
         // height: '100%',
-        flex: 1,
-        height: 'inherit',
-        borderWidth: 2,
-        borderColor: 'pink',
-        backgroundColor: 'grey',
+        // flex: 1,
+        // height: 'inherit',
+        // borderWidth: 2,
+        // borderColor: 'pink',
+        // backgroundColor: 'grey',
         alignItems: 'center',
     },
     hard: {
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
         // height: 'inherit',
         // borderWidth: 2,
         borderColor: 'pink',
-        backgroundColor: 'lightgrey',
+        // backgroundColor: 'lightgrey',
         alignItems: 'center',
     },
     exampleColor: {
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Bungee'
     },
     optionsContainer: {
-        borderWidth: 2,
+        // borderWidth: 2,
         width: width,
         height: '100%',
         // height: 210,
@@ -189,6 +190,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, .75)',
     },
     explanation: {
         fontSize: 20,
