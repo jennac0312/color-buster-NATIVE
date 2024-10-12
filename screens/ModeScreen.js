@@ -21,52 +21,52 @@ export default function ModeScreen ({ navigation }) {
         console.log('resetting qs:', allQuestions)
     }, [])
 
+    const gameModes = [
+        {
+            mode: 'easy',
+            desc1: '4 choices',
+            desc2: 'Words on white tile'
+        },
+        {
+            mode: 'hard',
+            desc1: '4 choices',
+            desc2: 'No words, only colors'
+        },
+        {
+            mode: 'speed',
+            desc1: '60 seconds',
+            desc2: 'How fast are you?'
+        },
+        {
+            mode: 'arcade',
+            desc1: 'One Rule:',
+            desc2: 'Don\'t miss'
+        },
+    ]
+
 
     return (
       <SafeAreaView style={styles.fullScreen}>
-        <Text style={styles.title}>~ CHOOSE YOUR MODE ~</Text>
+        {/* <Text style={styles.title}>~ CHOOSE YOUR MODE ~</Text> */}
 
         <View style={styles.modeContainer}>
-            <TouchableOpacity 
-                style={styles.mode}
-                onPress={() => handlePress('easy')}
-            >
-                <View style={styles.wordContainer.top}>
-                    <Text style={styles.button}>Easy</Text>
-                    <Text>4 choices</Text>
-                    <Text>Words on white tile</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity 
-                style={styles.mode}
-                onPress={() => handlePress('hard')}
-            >
-                <View style={styles.wordContainer.top}>
-                    <Text style={styles.button}>Hard</Text>
-                    <Text>4 choices</Text>
-                    <Text>No words, just colored tiles</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity 
-                style={styles.mode}
-                onPress={() => handlePress('speed')}
-            >
-                <View style={styles.wordContainer.bottom}>
-                    <Text style={styles.button}>Speed</Text>
-                    <Text>60 seconds</Text>
-                    <Text>How fast are you?</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity 
-                style={styles.mode}
-                onPress={() => handlePress('arcade')}
-            >
-                <View style={styles.wordContainer.bottom}>
-                    <Text style={styles.button}>Arcade</Text>
-                    <Text>One Rule:</Text>
-                    <Text style={{color: 'red', fontStyle: 'italic'}}>Don't miss</Text>
-                </View>
-            </TouchableOpacity>
+            {
+                gameModes.map((mode) => {
+                    return (
+                        <TouchableOpacity
+                        style={styles.mode}
+                        onPress={() => handlePress(mode.mode)}
+                        >
+                        <View style={ (mode.mode == 'easy' || mode.mode == 'hard') ? styles.wordContainer.top : styles.wordContainer.bottom }>
+                            <Text style={styles.button}>{mode.mode.toUpperCase()}</Text>
+                            <Text style={ styles.defaultFont }>{mode.desc1}</Text>
+                            <Text style={[ styles.defaultFont, ( mode.mode == 'arcade' && { color: 'red', 'fontStyle': 'italic', 'fontWeight': 'bold' }) ]}>{mode.desc2}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    )
+                })
+            }
+
         </View>
 
       </SafeAreaView>
@@ -75,24 +75,30 @@ export default function ModeScreen ({ navigation }) {
 
 const styles = StyleSheet.create({
     fullScreen: {
-        flex: 1
+        flex: 1,
+        backgroundColor: 'rgba(100, 131, 129, .5)',    
     },
     title: {
         textAlign: 'center',
         fontSize: 50,
         fontFamily: 'Londrina Sketch',
     },
+    defaultFont: {
+        // fontFamily: 'Edu Australia VIC WA NT Hand Dots',
+        // fontSize: 20
+    },
     modeContainer: {
-        borderWidth: 2,
-        borderColor: 'lime',
+        // borderWidth: 2,
+        // borderColor: 'lime',
         flex: 1,
         height: '100%',
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
     mode: {
-        borderWidth: 1,
-        borderStyle: 'dotted',
+        // borderWidth: 1,
+        // borderStyle: 'dotted',
+        // borderColor: 'rgba(174, 173, 240, 1)',
         flexBasis: '50%',
         width: '50%',
         height: '50%',
@@ -102,7 +108,8 @@ const styles = StyleSheet.create({
     },
     button: {
         fontSize: 35,
-        fontFamily: 'Sixtyfour Convergence'
+        fontFamily: 'Sixtyfour Convergence',
+        color: 'rgba(86, 86, 118, 1)',
     },
     what: {},
     wordContainer: {
