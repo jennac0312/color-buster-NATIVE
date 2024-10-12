@@ -17,6 +17,9 @@ export default AppContextProvider = ({ children }) => {
                     'Sixtyfour-Convergence': require('../assets/fonts/SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf'),
                     'Caveat': require('../assets/fonts/Caveat-VariableFont_wght.ttf'),
                     'Londrina Sketch': require('../assets/fonts/LondrinaSketch-Regular.ttf'),
+                    'Edu Australia VIC WA NT Hand Dots': require('../assets/fonts/EduAUVICWANTDots-VariableFont_wght.ttf'),
+                    'Rubik Bubbles': require('../assets/fonts/RubikBubbles-Regular.ttf'),
+                    'Bungee': require('../assets/fonts/Bungee-Regular.ttf'),
                 })
                 setFontLoaded(true)
             } catch (error) {
@@ -31,6 +34,7 @@ export default AppContextProvider = ({ children }) => {
     const GAME_LENGTH = 5
     const ARCADE_ROUNDS = 100
     const [ mode, setMode ] = useState(null)
+    const [ score, setScore ] = useState(0)
 
     const colors = ['red', 'orange', 'yellow', 'green', 'purple', 'pink', 'blue', 'grey', 'brown', 'white']
 
@@ -135,7 +139,8 @@ export default AppContextProvider = ({ children }) => {
                 test,
                 mode, setMode,
                 GAME_LENGTH, ARCADE_ROUNDS,
-                setAllQuestions, allQuestions, getColors
+                setAllQuestions, allQuestions, getColors,
+                score, setScore
 
             }}
         >
