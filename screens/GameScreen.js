@@ -34,6 +34,9 @@ export default function GameScreen ({ navigation }) {
             console.log('INCORRECT... BUZZZZZ')
             setFeedbackColor('rgba(220, 20, 60, 1)')
             Vibration.vibrate() // default 500 ms
+
+            // endgame if mode is arcade
+            mode === 'arcade' && endGame()
         }
 
         setTimeout(() => {

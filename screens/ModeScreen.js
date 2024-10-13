@@ -51,9 +51,10 @@ export default function ModeScreen ({ navigation }) {
 
         <View style={styles.modeContainer}>
             {
-                gameModes.map((mode) => {
+                gameModes.map((mode, idx) => {
                     return (
                         <TouchableOpacity
+                        key={idx}
                         style={styles.mode}
                         onPress={() => handlePress(mode.mode)}
                         >
