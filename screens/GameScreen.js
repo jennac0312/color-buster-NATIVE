@@ -27,12 +27,12 @@ export default function GameScreen ({ navigation }) {
 
     const checkAnswer = (answer, selected) => {
         if(answer === selected){
-            setFeedbackColor('rgba(50, 205, 50, .5)')
+            setFeedbackColor('rgba(50, 205, 50, 1)')
             setScore((prev) => prev + 1) // increment score
             console.log('CORRECT ', score)
         } else {
             console.log('INCORRECT... BUZZZZZ')
-            setFeedbackColor('rgba(255, 0, 0, .5)')
+            setFeedbackColor('rgba(220, 20, 60, 1)')
             Vibration.vibrate() // default 500 ms
         }
 
