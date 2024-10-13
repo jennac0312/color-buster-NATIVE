@@ -4,7 +4,7 @@ import { AppContext } from '../context/app_context'
 
 export default function GameOverScreen({ navigation }) {
 
-  const { mode, score, setScore, GAME_LENGTH } = useContext(AppContext)
+  const { mode, score, setScore, gameLength } = useContext(AppContext)
 
   const handleResetGame = () => {
     navigation.reset({
@@ -15,7 +15,7 @@ export default function GameOverScreen({ navigation }) {
   }
 
   console.log('score: ', score)
-  console.log('total: ', GAME_LENGTH)
+  console.log('total: ', gameLength)
 
     return (
       <SafeAreaView style={styles.fullScreen}>
@@ -28,7 +28,7 @@ export default function GameOverScreen({ navigation }) {
           <View style={ styles.reportContainer }>
             <Text style={{ fontFamily: 'Caveat', fontSize: 30 }}>You scored </Text>
             <Text style={styles.score}>{score}</Text>
-            <Text style={{ fontFamily: 'Caveat', fontSize: 30 }}>out of {GAME_LENGTH}</Text>
+            <Text style={{ fontFamily: 'Caveat', fontSize: 30 }}>out of {gameLength}</Text>
           </View>
 
           <View style={styles.buttonContainer}>
