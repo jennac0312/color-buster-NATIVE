@@ -9,7 +9,6 @@ export default AppContextProvider = ({ children }) => {
     // FONTS
     const [fontLoaded, setFontLoaded] = useState(false)
 
-    
     useEffect(() => {
         const fetchFonts = async() => {
             try {
@@ -31,8 +30,8 @@ export default AppContextProvider = ({ children }) => {
 
     // GAME LOGIC
     const test = 'test'
-    const GAME_LENGTH = 5
-    const ARCADE_ROUNDS = 100
+    const [gameLength, setGameLength] = useState(null)
+    const ARCADE_ROUNDS = 10
     const [ mode, setMode ] = useState(null)
     const [ score, setScore ] = useState(0)
 
@@ -43,6 +42,7 @@ export default AppContextProvider = ({ children }) => {
         name: '',
         style: ''
     }) //colors, name, style
+
     const [ allQuestions, setAllQuestions ] = useState([]) // need to shift first question
 
     // random inclusive
@@ -131,6 +131,26 @@ export default AppContextProvider = ({ children }) => {
     //     }
     // }, [allQuestions])
 
+    // update gameLength based on mode
+    useEffect(() => {
+        switch (mode) {
+            case 'easy':
+                setGameLength(5)
+                break;
+            case 'hard':
+                setGameLength(5)
+                break;
+            case 'speed':
+                setGameLength(10)
+                break;
+            case 'arcade':
+                setGameLength(10)
+                break;
+            default:
+                setGameLength(3)
+        }
+    }, [mode])
+
     return(
         <AppContext.Provider
             value={{
@@ -138,7 +158,7 @@ export default AppContextProvider = ({ children }) => {
 
                 test,
                 mode, setMode,
-                GAME_LENGTH, ARCADE_ROUNDS,
+                gameLength, ARCADE_ROUNDS,
                 setAllQuestions, allQuestions, getColors,
                 score, setScore
 

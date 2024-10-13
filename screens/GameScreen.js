@@ -4,7 +4,7 @@ import { AppContext } from '../context/app_context'
 
 export default function GameScreen ({ navigation }) {
 
-    const { mode, allQuestions, GAME_LENGTH, ARCADE_ROUNDS, getColors, score, setScore } = useContext(AppContext)
+    const { mode, allQuestions, gameLength, ARCADE_ROUNDS, getColors, score, setScore } = useContext(AppContext)
 
     const [ round, setRound ] = useState(0) //will need reset
     const [ currentQuestion, setCurrentQuestion ] = useState(null)
@@ -16,11 +16,11 @@ export default function GameScreen ({ navigation }) {
 
     const startNextRound = () => {
         // check end of game
-        if( round <  GAME_LENGTH - 1 ){
+        if( round <  gameLength - 1 ){
             setRound(cur => cur + 1)
             console.log('enter round:', round+2)
         } else {
-            setFeedbackColor('rgba(156, 82, 139, .5)')
+            setFeedbackColor('rgba(156, 82, 139, .5)') // reset color
             endGame()
         }
     }
@@ -41,13 +41,12 @@ export default function GameScreen ({ navigation }) {
             startNextRound()
         }, 200) // set feedback color back to transparent after ms
 
-    }
-
+    }    
 
     useEffect(() => {
         // arcade mode
-        if(allQuestions.length < GAME_LENGTH){
-            console.log('LENGTH IS LESS THAN', GAME_LENGTH)
+        if(allQuestions.length < gameLength){
+            console.log('LENGTH IS LESS THAN', gameLength)
             getColors()
         } else {
             console.log('ALL QUESTIONS:', allQuestions)
