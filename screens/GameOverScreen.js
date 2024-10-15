@@ -16,10 +16,12 @@ export default function GameOverScreen({ navigation }) {
       if( mode === 'arcade'){
         console.log('arcade mode gathering high score')
         const fetchedHighScore = await Database.getHighScore()
-        // setHighScore(fetchedHighScore)
+        setHighScore(fetchedHighScore)
 
         if(score > highScore){
           setNewRecord(score)
+        } else {
+          setNewRecord(null)
         }
         Database.insertNewScore(score)
       }
@@ -38,12 +40,14 @@ export default function GameOverScreen({ navigation }) {
     // reset records
     setHighScore(null)
     setNewRecord(null)
-    Database.deleteAllScores()
+    // Database.deleteAllScores()
   }
 
   console.log('score: ', score)
   console.log('total: ', gameLength)
-  // console.log('DATABASE: ', Database.test)
+  console.log('HIGH SCORE: ', highScore)
+  console.log('RECORD: ', newRecord)
+  console.log('DATABASE: ', Database.test)
 
     return (
       <SafeAreaView style={styles.fullScreen}>
@@ -53,19 +57,17 @@ export default function GameOverScreen({ navigation }) {
         <View style={ styles.container }>
           <Text style={styles.title}>GAME OVER</Text>
 
-          <View style={ styles.highScore}>
-            { highScore && 
-              <Text style={styles.highScoreText}>Current Record: {highScore}</Text>
+            { newRecord > highScore ?
+              <View style={styles.congratulations}>
+                <Text style={styles.congratulationsText}>CONGRATULATIONS!</Text>
+                <Text style={styles.congratulationsText}> NEW RECORD</Text>
+              </View>
+              :
+              highScore !== null || highScore != 0 && 
+                <View style={ styles.highScore}>
+                  <Text style={styles.highScoreText}>Current Record: {highScore}</Text>
+                </View>
             }
-          </View>
-          <View style={styles.congratulations}>
-            { newRecord !== null &&
-            <>
-              <Text style={styles.congratulationsText}>CONGRATULATIONS!</Text>
-              <Text style={styles.congratulationsText}> NEW RECORD</Text>
-            </>
-            }
-          </View>
 
           <View style={ styles.reportContainer }>
             {
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   congratulations: {
-    borderWidth: 2,
+    // borderWidth: 2,
     alignItems: 'center',
     // position: 'absolute',
     // left: '50%',
