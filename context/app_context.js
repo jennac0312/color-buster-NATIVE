@@ -30,7 +30,7 @@ export default AppContextProvider = ({ children }) => {
                     'Sixtyfour-Convergence': require('../assets/fonts/SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf'),
                     'Caveat': require('../assets/fonts/Caveat-VariableFont_wght.ttf'),
                     'Londrina Sketch': require('../assets/fonts/LondrinaSketch-Regular.ttf'),
-                    'Edu Australia VIC WA NT Hand Dots': require('../assets/fonts/EduAUVICWANTDots-VariableFont_wght.ttf'),
+                    // 'Edu Australia VIC WA NT Hand Dots': require('../assets/fonts/EduAUVICWANTDots-VariableFont_wght.ttf'),
                     'Rubik Bubbles': require('../assets/fonts/RubikBubbles-Regular.ttf'),
                     'Bungee': require('../assets/fonts/Bungee-Regular.ttf'),
                 })
