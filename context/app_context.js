@@ -1,10 +1,24 @@
 import { ActivityIndicator, View } from "react-native";
 import { createContext, useEffect, useState } from "react";
 import * as Font from 'expo-font'
+const Database = require('./database')
 
 export const AppContext = createContext()
 
 export default AppContextProvider = ({ children }) => {
+
+    // DATABASE
+    useEffect(() => {
+        const setupDatabase = async() => {
+            try {
+                await Database.initializeDatabase(); // Ensure this is awaited
+            } catch (error) {
+                console.error('Database initialization error:', error);
+            }
+        } 
+
+        setupDatabase()
+    }, [])
 
     // FONTS
     const [fontLoaded, setFontLoaded] = useState(false)
@@ -160,8 +174,9 @@ export default AppContextProvider = ({ children }) => {
                 mode, setMode,
                 gameLength, ARCADE_ROUNDS,
                 setAllQuestions, allQuestions, getColors,
-                score, setScore
+                score, setScore,
 
+                Database
             }}
         >
             { !fontLoaded ? (
