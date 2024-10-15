@@ -1,10 +1,32 @@
-import { Text, View, SafeAreaView, TouchableOpacity, StyleSheet} from 'react-native'
-import { useContext } from 'react'
+import { Text, View, SafeAreaView, TouchableOpacity, StyleSheet, Dimensions} from 'react-native'
+import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../context/app_context'
+
+const { width } = Dimensions.get('window')
 
 export default function GameOverScreen({ navigation }) {
 
-  const { mode, score, setScore, gameLength } = useContext(AppContext)
+  const { mode, score, setScore, gameLength, Database } = useContext(AppContext)
+
+  const [ highScore, setHighScore ] = useState(null)
+  const [ newRecord, setNewRecord ] = useState(null)
+
+  useEffect(() => {
+    const fetchHighScore = async() => {
+      if( mode === 'arcade'){
+        console.log('arcade mode gathering high score')
+        const fetchedHighScore = await Database.getHighScore()
+        // setHighScore(fetchedHighScore)
+
+        if(score > highScore){
+          setNewRecord(score)
+        }
+        Database.insertNewScore(score)
+      }
+    }
+
+    fetchHighScore()
+  }, [mode, score, Database])
 
   const handleResetGame = () => {
     navigation.reset({
@@ -12,10 +34,16 @@ export default function GameOverScreen({ navigation }) {
       routes: [{name: 'Home'}]
     })
     setScore(0) // reset score
+
+    // reset records
+    setHighScore(null)
+    setNewRecord(null)
+    Database.deleteAllScores()
   }
 
   console.log('score: ', score)
   console.log('total: ', gameLength)
+  // console.log('DATABASE: ', Database.test)
 
     return (
       <SafeAreaView style={styles.fullScreen}>
@@ -25,10 +53,30 @@ export default function GameOverScreen({ navigation }) {
         <View style={ styles.container }>
           <Text style={styles.title}>GAME OVER</Text>
 
+          <View style={ styles.highScore}>
+            { highScore && 
+              <Text style={styles.highScoreText}>Current Record: {highScore}</Text>
+            }
+          </View>
+          <View style={styles.congratulations}>
+            { newRecord !== null &&
+            <>
+              <Text style={styles.congratulationsText}>CONGRATULATIONS!</Text>
+              <Text style={styles.congratulationsText}> NEW RECORD</Text>
+            </>
+            }
+          </View>
+
           <View style={ styles.reportContainer }>
-            <Text style={{ fontFamily: 'Caveat', fontSize: 30 }}>You scored </Text>
+            {
+              mode !== 'arcade' &&
+                <Text style={{ fontFamily: 'Caveat', fontSize: 30 }}>You scored </Text>
+            }
             <Text style={styles.score}>{score}</Text>
-            <Text style={{ fontFamily: 'Caveat', fontSize: 30 }}>out of {gameLength}</Text>
+            {
+              mode !== 'arcade' &&
+                <Text style={{ fontFamily: 'Caveat', fontSize: 30 }}>out of {gameLength}</Text>
+            }
           </View>
 
           <View style={styles.buttonContainer}>
@@ -75,6 +123,30 @@ const styles = StyleSheet.create({
     transform: [{ scaleY: 2 }],
     paddingTop: 15,
   },
+  highScore: {
+    borderWidth: 2,
+    alignItems: 'center',
+    // position: 'absolute',
+    // left: '50%',
+    // transform: [{ translateX: (-width/2) }],
+    top: '5%',
+  },
+  highScoreText: {
+    fontFamily: 'Bungee',
+    fontSize: 30,
+  },
+  congratulations: {
+    borderWidth: 2,
+    alignItems: 'center',
+    // position: 'absolute',
+    // left: '50%',
+    // transform: [{ translateX: (-width/2) }],
+    top: '5%',
+  },
+  congratulationsText: {
+    fontFamily: 'Bungee',
+    fontSize: 30,
+  },
   reportContainer: {
     // borderWidth: 2,
     // borderColor: 'lime',
@@ -85,7 +157,7 @@ const styles = StyleSheet.create({
   },
   score: {
     fontFamily: 'Bungee',
-    fontSize: '200%',
+    fontSize: 200,
     color: 'rgba(47, 1, 71, 1)'
   },
   buttonContainer: {
