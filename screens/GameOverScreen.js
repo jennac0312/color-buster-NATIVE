@@ -8,8 +8,8 @@ export default function GameOverScreen({ navigation }) {
 
   const { mode, score, setScore, gameLength, Database } = useContext(AppContext)
 
-  const [ highScore, setHighScore ] = useState(null)
-  const [ newRecord, setNewRecord ] = useState(null)
+  const [ highScore, setHighScore ] = useState(0)
+  const [ newRecord, setNewRecord ] = useState(0)
 
   useEffect(() => {
     const fetchHighScore = async() => {
@@ -21,7 +21,7 @@ export default function GameOverScreen({ navigation }) {
         if(score > highScore){
           setNewRecord(score)
         } else {
-          setNewRecord(null)
+          setNewRecord(0)
         }
         Database.insertNewScore(score)
       }
@@ -38,8 +38,8 @@ export default function GameOverScreen({ navigation }) {
     setScore(0) // reset score
 
     // reset records
-    setHighScore(null)
-    setNewRecord(null)
+    // setHighScore(null)
+    setNewRecord(0)
     // Database.deleteAllScores()
   }
 
@@ -57,13 +57,13 @@ export default function GameOverScreen({ navigation }) {
         <View style={ styles.container }>
           <Text style={styles.title}>GAME OVER</Text>
 
-            { newRecord > highScore ?
+            { newRecord > highScore &&
               <View style={styles.congratulations}>
                 <Text style={styles.congratulationsText}>CONGRATULATIONS!</Text>
                 <Text style={styles.congratulationsText}> NEW RECORD</Text>
               </View>
-              :
-              highScore !== null || highScore != 0 && 
+            }{
+              highScore > 0 && highScore > newRecord &&
                 <View style={ styles.highScore}>
                   <Text style={styles.highScoreText}>Current Record: {highScore}</Text>
                 </View>
